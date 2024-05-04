@@ -16,5 +16,11 @@ func main()  {
 	var names = [3]string{"Mila","Mugdho","Meghla"};
 	fmt.Println(names);
 	
+	var langs [3]string;
+
+	langs[0] = "go"
+	langs[1] = "java"
+	
+	fmt.Println(langs)
 
 }
