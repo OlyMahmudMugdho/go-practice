@@ -17,5 +17,13 @@ func main() {
 	langs = append(langs[0:2])  // removing c#
 	fmt.Println(langs)
 	
+	var frameworks = make([]string, 1);
+	
+	frameworks = append(frameworks, "spring");
+
+	fmt.Println(frameworks)
+	
+	frameworks = append(frameworks, "dotnet");
+	fmt.Println(frameworks)
 
 }
