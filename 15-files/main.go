@@ -7,9 +7,17 @@ import (
 
 func main() {
 	var content string = "sample text 2";
-	file,_ := os.Create("./some.txt");
+	file,err := os.Create("./some.txt");
 
-	length,_ := file.WriteString(content);
+	if err != nil {
+		panic(err);
+	}
+
+	length,err := file.WriteString(content);
+
+	if err != nil {
+		panic(err);
+	}
 
 	fmt.Println("the length of the content is ", length);
 
