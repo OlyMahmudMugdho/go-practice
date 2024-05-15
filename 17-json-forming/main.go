@@ -16,7 +16,7 @@ type Todo struct {
 func main() {
 
 	taskOne  := Todo{1,1,"something", false};
-	todoJson,_ := json.Marshal(taskOne);
+	todoJson,_ := json.MarshalIndent(taskOne,"","\t");
 	fmt.Println(string(todoJson))
 	
 }
