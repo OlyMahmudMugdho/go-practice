@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 )
@@ -20,6 +20,9 @@ func main() {
 		panic(err)
 	}
 
-	content,_ := ioutil.ReadAll(response.Body);
+	// content,_ := ioutil.ReadAll(response.Body); 
+	// NB  : ioutil.ReadAll() is deprecated
+
+	content,_ := io.ReadAll(response.Body);
 	fmt.Println(string(content))
 }
