@@ -25,4 +25,6 @@ func main() {
 
 	content,_ := io.ReadAll(response.Body);
 	fmt.Println(string(content))
+
+	fmt.Println("some small change")
 }
