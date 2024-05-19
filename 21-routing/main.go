@@ -16,6 +16,6 @@ func main() {
 	log.Fatal(http.ListenAndServe(":5000", r))
 }
 
-func sayHello(w http.ResponseWriter, r *http.Request)  {
+func sayHello(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode("running server")
 }
