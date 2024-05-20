@@ -43,7 +43,7 @@ func serveHomePage(w http.ResponseWriter, r *http.Request) {
 func getOneBook(w http.ResponseWriter, r *http.Request) {
 
 	params := mux.Vars(r)
-
+	fmt.Printf("%T\n",params["id"])
 	for _, book := range books {
 		if params["id"] == book.Id {
 			json.NewEncoder(w).Encode(book)
@@ -57,10 +57,12 @@ func getOneBook(w http.ResponseWriter, r *http.Request) {
 }
 
 
+
 func createBook(w http.ResponseWriter, r *http.Request)  {
 	var book Book;
 	json.NewDecoder(r.Body).Decode(&book);
 	book.Id = fmt.Sprintf("%d", rand.Intn(100000))
-	fmt.Println(book)
-	json.NewEncoder(w).Encode(book)
+	books = append(books, book)
+	fmt.Printf("%T", book.Id)
+	json.NewEncoder(w).Encode(books)
 }
