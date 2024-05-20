@@ -27,6 +27,7 @@ func main() {
 	router := mux.NewRouter()
 	router.HandleFunc("/", serveHomePage).Methods("GET")
 	router.HandleFunc("/books/{id}", getOneBook).Methods("GET")
+	router.HandleFunc("/books", getAllBooks).Methods("GET")
 	router.HandleFunc("/books", createBook).Methods("POST")
 
 	books = append(books, Book{"1", "Spring in Action", "Craig Walls"})
@@ -57,6 +58,9 @@ func getOneBook(w http.ResponseWriter, r *http.Request) {
 }
 
 
+func getAllBooks(w http.ResponseWriter, r *http.Request) {
+	json.NewEncoder(w).Encode(books)
+}
 
 func createBook(w http.ResponseWriter, r *http.Request)  {
 	var book Book;
