@@ -52,5 +52,4 @@ func getOneBook(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(404)
 	json.NewEncoder(w).Encode(NotFound{true,"book not found"})
 
-	return
 }
