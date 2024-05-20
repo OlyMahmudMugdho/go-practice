@@ -10,14 +10,15 @@ import (
 )
 
 type Book struct {
-	Id     string    `json:book_id`
+	Id     string `json:book_id`
 	Name   string `json:name`
 	Author string `json:author`
 }
 
-
-
-
+type NotFound struct {
+	Error   bool   `json:"error"`
+	Message string `json:"message"`
+}
 
 var books []Book
 
@@ -40,7 +41,6 @@ func serveHomePage(w http.ResponseWriter, r *http.Request) {
 func getOneBook(w http.ResponseWriter, r *http.Request) {
 
 	params := mux.Vars(r)
-	
 
 	for _, book := range books {
 		if params["id"] == book.Id {
@@ -48,8 +48,9 @@ func getOneBook(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
-	
+
 	w.WriteHeader(404)
+	json.NewEncoder(w).Encode(NotFound{true,"book not found"})
 
 	return
 }
