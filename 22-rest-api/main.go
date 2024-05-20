@@ -11,9 +11,9 @@ import (
 )
 
 type Book struct {
-	Id     string `json:book_id`
-	Name   string `json:name`
-	Author string `json:author`
+	Id     string `json:"id"`
+	Name   string `json:"name"`
+	Author string `json:"author"`
 }
 
 type NotFound struct {
