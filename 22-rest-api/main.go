@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"math/rand"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -26,6 +27,7 @@ func main() {
 	router := mux.NewRouter()
 	router.HandleFunc("/", serveHomePage).Methods("GET")
 	router.HandleFunc("/books/{id}", getOneBook).Methods("GET")
+	router.HandleFunc("/books", createBook).Methods("POST")
 
 	books = append(books, Book{"1", "Spring in Action", "Craig Walls"})
 
@@ -52,4 +54,13 @@ func getOneBook(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(404)
 	json.NewEncoder(w).Encode(NotFound{true,"book not found"})
 
+}
+
+
+func createBook(w http.ResponseWriter, r *http.Request)  {
+	var book Book;
+	json.NewDecoder(r.Body).Decode(&book);
+	book.Id = fmt.Sprintf("%d", rand.Intn(100000))
+	fmt.Println(book)
+	json.NewEncoder(w).Encode(book)
 }
