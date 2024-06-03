@@ -30,7 +30,7 @@ func main() {
 	router.HandleFunc("/books", getAllBooks).Methods("GET")
 	router.HandleFunc("/books", createBook).Methods("POST")
 	router.HandleFunc("/hello", sayHello).Methods("GET")
-	router.HandleFunc("/books/update/{id}", updateBook).Methods("PUT")
+	router.HandleFunc("/books/edit/{id}", updateBook).Methods("PUT")
 
 	books = append(books, Book{"1", "Spring in Action", "Craig Walls"})
 
