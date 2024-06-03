@@ -30,6 +30,7 @@ func main() {
 	router.HandleFunc("/books", getAllBooks).Methods("GET")
 	router.HandleFunc("/books", createBook).Methods("POST")
 	router.HandleFunc("/hello", sayHello).Methods("GET")
+	router.HandleFunc("/books/update/{id}", updateBook).Methods("PUT")
 
 	books = append(books, Book{"1", "Spring in Action", "Craig Walls"})
 
@@ -70,4 +71,18 @@ func createBook(w http.ResponseWriter, r *http.Request)  {
 	books = append(books, book)
 	fmt.Printf("%T", book.Id)
 	json.NewEncoder(w).Encode(books)
+}
+
+func updateBook(w http.ResponseWriter, r *http.Request)  {
+	var book Book;
+	json.NewDecoder(r.Body).Decode(&book)
+	params := mux.Vars(r)
+	fmt.Println(params["id"])
+
+	for i := 0; i < len(books); i++ {
+		if params["id"] == books[i].Id {
+			books[i] = book;
+		}
+	}
+	json.NewEncoder(w).Encode(book)
 }
