@@ -88,3 +88,12 @@ func updateBook(w http.ResponseWriter, r *http.Request)  {
 	json.NewEncoder(w).Encode(book)
 }
 
+func deleteBook(w http.ResponseWriter, r *http.Request)  {
+	params := mux.Vars(r);
+	for i := 0; i < len(books); i++ {
+		if books[i].Id == params["id"] {
+			index := i
+			books = append(books[:index],books[index+1:]... )
+		}
+	}
+}
