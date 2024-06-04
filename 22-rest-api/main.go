@@ -84,10 +84,7 @@ func updateBook(w http.ResponseWriter, r *http.Request)  {
 			books[i] = book;
 		}
 
-		if book.Id == "" {
-			books[i].Id = params["id"];
-			book.Id = params["id"]
-		}
 	}
 	json.NewEncoder(w).Encode(book)
 }
+
