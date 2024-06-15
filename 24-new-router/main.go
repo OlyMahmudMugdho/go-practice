@@ -1,11 +1,14 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 )
 
 func main() {
 	router := http.NewServeMux()
-	log.Fatal(http.ListenAndServe(":8080", router))
+	port := "8080"
+	fmt.Printf("server is running on port %v\n", port)
+	log.Fatal(http.ListenAndServe(":" + port, router))
 }
