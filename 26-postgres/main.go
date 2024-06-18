@@ -25,11 +25,14 @@ func main() {
 
 	fmt.Println(rows)
 
-	// rows, err := droptTable(db)
-	// if err != nil {
-	// 	fmt.Println(err)
-	// }
-	// print(rows)
+	/* rows, err := droptTable(db)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(rows)
+	// for dropping table
+
+	*/
 
 	defer db.Close()
 
