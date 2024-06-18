@@ -32,3 +32,10 @@ func main() {
 	defer db.Close()
 
 }
+
+func droptTable(db sql.DB) (*sql.Rows, error) {
+	rows, err := db.Query(`
+	  	drop table books
+	`)
+	return rows, err
+}
