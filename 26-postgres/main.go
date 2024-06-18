@@ -16,7 +16,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	table, err := db.Query(`
+	/* table, err := db.Query(`
 		create table books (
 			id int,
 			name varchar(255),
@@ -28,12 +28,19 @@ func main() {
 		fmt.Println(err)
 	}
 
-	fmt.Println(table)
+	fmt.Println(table) */
+
+	rows, err := droptTable(db)
+	if err != nil {
+		fmt.Println(err)
+	}
+	print(rows)
+
 	defer db.Close()
 
 }
 
-func droptTable(db sql.DB) (*sql.Rows, error) {
+func droptTable(db *sql.DB) (*sql.Rows, error) {
 	rows, err := db.Query(`
 	  	drop table books
 	`)
