@@ -1,17 +1,22 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 func main() {
-	go SumOfTen()
-	fmt.Println("hello")
+	go greet("hello")
+	greet("world")
 }
 
-func SumOfTen() int8 {
-	var sum int8 = 0
-
-	for i := 1; i <= 10; i++ {
-		sum = sum + int8(i)
+func greet(message string) {
+	start := time.Now().UnixMilli()
+	for i := 0; i < 5; i++ {
+		time.Sleep(1 * time.Millisecond)
+		fmt.Println(message)
 	}
-	return sum
+	end := time.Now().UnixMilli()
+
+	fmt.Println(end - start)
 }
